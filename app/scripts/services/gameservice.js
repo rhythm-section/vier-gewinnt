@@ -2,19 +2,37 @@
 
 angular.module('vierGewinntApp')
   .factory('gameService', function () {
-    var boardSize = 8;
-    var gameBoard = [];
-    var currentUser = 1;
-    var gameRunning = false;
-    var winSound;
-    var insertSound;
+    
+    /* Initial Setting of Needed Variables */
+    var boardSize = 8;                                  /* Setting the size of the quadratic board */
+    var gameBoard = [];                                 /* Setting the gameBoard Array which states the field states */
+    var currentUser = 0;                                /* Setting the currentUser variable */
+    var gameRunning = false;                            /* Setting the gameRunning variable */
+    
+    /* Initial Sound settings */
+    var winSound = new Audio('/sounds/winsound.mp3');   /* Initialize the winSound-Variable ... */
+    winSound.volume = 1;                                /* ... and volume */
+    var colSounds = [];
+    var drawSound = new Audio('/sounds/yay.mp3');
 
-    var init = function () {
-      currentUser = 1;
-      gameRunning = true;
-      winSound = new Audio('/sounds/yay.mp3');
-      winSound.volume = 0.3;
-      insertSound = new Audio('/sounds/Tap.wav');
+    colSounds[0] = new Audio('/sounds/col1.mp3');
+    colSounds[1] = new Audio('/sounds/col2.mp3');
+    colSounds[2] = new Audio('/sounds/col3.mp3');
+    colSounds[3] = new Audio('/sounds/col4.mp3');
+    colSounds[4] = new Audio('/sounds/col5.mp3');
+    colSounds[5] = new Audio('/sounds/col6.mp3');
+    colSounds[6] = new Audio('/sounds/col7.mp3');
+    colSounds[7] = new Audio('/sounds/col8.mp3');
+
+    var overlayText = '';
+
+    /* The init-Function sets all variables for starting the game */
+    var initGame = function () {
+      currentUser = 1;                                  /* set the currentUser to the startingUser */
+      gameRunning = true;                               /* define the game as running */
+      overlayText = '';
+
+      /* Intialize the gameBoard with boardSize*boardSize fields and each field has userValue 0 */
       for(var i = 0; i < boardSize; i++) {
         gameBoard[i] = new Array(boardSize);
         for(var j = 0; j < boardSize; j++) {
@@ -23,20 +41,17 @@ angular.module('vierGewinntApp')
       }
     };
 
+    /* The inserCoin-Function will be called when a new coin is set from a user */
     var insertCoin = function (colNumber) {
-      // check if colNumber < boardSize => isValid
-      for(var rowNumber = 7; rowNumber >= 0; rowNumber--) {
+
+      for(var rowNumber = boardSize-1; rowNumber >= 0; rowNumber--) {
         if(gameBoard[colNumber][rowNumber] === 0) {
-          insertSound.cloneNode().play();
           gameBoard[colNumber][rowNumber] = currentUser;
           connectFour(colNumber, rowNumber);
           break;
         }
       }
-    };
 
-    var playHoverSound = function() {
-      insertSound.cloneNode().play();
     };
 
     var changeUser = function () {
@@ -52,7 +67,6 @@ angular.module('vierGewinntApp')
           break;
         } else {
           coinCnt++;
-          //console.log('left / ' + 'colNumber: ' + leftColNumber + ' / rowNumber: ' + rowNumber + 'coinCnt: ' + coinCnt);
         }
       }
 
@@ -62,7 +76,6 @@ angular.module('vierGewinntApp')
           break;
         } else {
           coinCnt++;
-          //console.log('right / ' + 'colNumber: ' + rightColNumber + ' / rowNumber: ' + rowNumber + 'coinCnt: ' + coinCnt);
         }
       }
 
@@ -78,7 +91,6 @@ angular.module('vierGewinntApp')
           break;
         } else {
           coinCnt++;
-          // console.log('up / ' + 'rowNumber: ' + upRowNumber + ' / colNumber: ' + colNumber + ' coinCnt: ' + coinCnt);
         }
       }
 
@@ -88,7 +100,6 @@ angular.module('vierGewinntApp')
           break;
         } else {
           coinCnt++;
-          // console.log('down / ' + 'rowNumber: ' + upRowNumber + ' / colNumber: ' + colNumber + ' coinCnt: ' + coinCnt);
         }
       }
 
@@ -142,7 +153,6 @@ angular.module('vierGewinntApp')
           break;
         } else {
           coinCnt++;
-          // console.log('down / ' + 'rowNumber: ' + upRowNumber + ' / colNumber: ' + colNumber + ' coinCnt: ' + coinCnt);
         }
       }
 
@@ -154,7 +164,6 @@ angular.module('vierGewinntApp')
           break;
         } else {
           coinCnt++;
-          // console.log('down / ' + 'rowNumber: ' + upRowNumber + ' / colNumber: ' + colNumber + ' coinCnt: ' + coinCnt);
         }
       }
 
@@ -168,26 +177,44 @@ angular.module('vierGewinntApp')
       var maxUpRight = getDiagonalUpRight(colNumber, rowNumber);
 
       if(maxVertical >= 4 || maxHorizontal >= 4 || maxUpLeft >= 4 || maxUpRight >= 4) {
-        finishGame();
+        finishGame('win');
+      } else if(!emptyFields()) {
+        finishGame('draw');
       } else {
+        colSounds[colNumber].cloneNode().play();
         changeUser();
       }
 
-      //console.log('maxVertical: ' + maxVertical + ' / maxHorizontal: ' + maxHorizontal + ' / maxUpLeft: ' + maxUpLeft + ' / maxUpRight: ' + maxUpRight);
     };
 
-    var finishGame = function() {
-      // show winner, winner, chicken dinner message
+    var emptyFields = function() {
+      for(var i = 0; i < boardSize; i++) {
+        for(var j = 0; j < boardSize; j++) {
+          if(gameBoard[i][j] === 0) {
+            return true;
+          }
+        }
+      }
+
+      return false;
+    };
+
+    var finishGame = function(result) {
       gameRunning = false;
-      winSound.play();
-      console.log('Player ' + currentUser + ' wins!');
+      if(result === 'win') {
+        winSound.play();
+        overlayText = 'Winner, winner, chicken dinner! Player ' + currentUser + ' wins!';
+      } else if (result === 'draw') {
+        drawSound.play();
+        overlayText = 'Everybody wins!';
+      }
     };
 
-    init();
+    initGame();
 
     return {
       initGame: function () {
-        init();
+        initGame();
         return gameBoard;
       },
       insertCoin: function (colNumber) {
@@ -202,8 +229,8 @@ angular.module('vierGewinntApp')
       getCurrentUser: function () {
         return currentUser;
       },
-      playHoverSound: function () {
-        playHoverSound();
+      getOverlayText: function() {
+        return overlayText;
       }
     };
   });

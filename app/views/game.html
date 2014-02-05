@@ -1,14 +1,12 @@
 <div id="wrapper">
   <div id="overlay" ng-show="isFinished">
     <div class="inner">
-      <p>Winner, winner, chicken dinner!</p>
-      <p>Player {{currentUser}}</p>
+      <p>{{overlayText}}</p>
       <button ng-click="initGame()">Restart</button>
     </div>
   </div>
 
   <nav>
-    <!-- <p class="user-{{currentUser}}">Player {{currentUser}}</p> -->
     <ul class="user-{{currentUser}}">
       <li><button ng-click="initGame()">Restart</button></li>
       <li>Player 1</li>
@@ -17,7 +15,7 @@
   </nav>
 
   <ul id="game-board">
-    <li ng-repeat="col in gameBoard track by $index" ng-click="insertCoin($index)" ng-mouseenter="playHoverSound()">
+    <li ng-repeat="col in gameBoard track by $index" ng-click="insertCoin($index)">
       <ul>
         <li ng-repeat="row in col track by $index" class="user-{{row}}"></li>
       </ul>
