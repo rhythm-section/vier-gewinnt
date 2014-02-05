@@ -196,6 +196,9 @@ angular.module('vierGewinntApp')
       },
       getCurrentUser: function () {
         return currentUser;
+      },
+      playHoverSound: function(){
+      	playHoverSound();
       }
     };
   });
