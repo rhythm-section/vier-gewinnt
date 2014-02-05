@@ -186,6 +186,7 @@ angular.module('vierGewinntApp')
         finishGame('draw');
       } else {
         colSounds[colNumber].cloneNode().play();
+        console.log(colSounds[colNumber]);
         changeUser();
       }
 

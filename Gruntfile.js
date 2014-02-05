@@ -285,7 +285,8 @@ module.exports = function (grunt) {
             'views/{,*/}*.html',
             'bower_components/**/*',
             'images/{,*/}*.{webp}',
-            'fonts/*'
+            'fonts/*',
+            'sounds/*'
           ]
         }, {
           expand: true,
@@ -403,12 +404,4 @@ module.exports = function (grunt) {
     'test',
     'build'
   ]);
-
-  grunt.registerTask('heroku:development', function () {
-    grunt.task.run(['serve']);
-  });
-
-  grunt.registerTask('heroku:production', function () {
-    grunt.task.run(['build']);
-  });
 };
