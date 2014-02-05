@@ -13,7 +13,7 @@ angular.module('vierGewinntApp')
       currentUser = 1;
       gameRunning = true;
       winSound = new Audio("/sounds/fail1.m4a");
-      insertSound = new Audio("/sounds/coin.m4a");
+      insertSound = new Audio("/sounds/Tap.wav");
       for(var i = 0; i < boardSize; i++) {
         gameBoard[i] = new Array(boardSize);
         for(var j = 0; j < boardSize; j++) {
@@ -26,7 +26,7 @@ angular.module('vierGewinntApp')
       // check if colNumber < boardSize => isValid
       for(var rowNumber = 7; rowNumber >= 0; rowNumber--) {
         if(gameBoard[colNumber][rowNumber] === 0) {
-        	insertSound.play();
+        	insertSound.cloneNode().play();
           gameBoard[colNumber][rowNumber] = currentUser;
           connectFour(colNumber, rowNumber);
           break;
@@ -199,3 +199,8 @@ angular.module('vierGewinntApp')
       }
     };
   });
+  
+  
+  var playHoverSound = function() {
+  	insertSound.cloneNode().play();
+  };

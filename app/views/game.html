@@ -11,7 +11,7 @@
   </div>
 
   <ul id="game-board">
-    <li ng-repeat="col in gameBoard track by $index" ng-click="insertCoin($index)">
+    <li ng-repeat="col in gameBoard track by $index" ng-click="insertCoin($index)" ng-mouseover="playHoverSound()">
       <ul>
         <li ng-repeat="row in col track by $index" class="user-{{row}}"></li>
       </ul>
