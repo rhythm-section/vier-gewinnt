@@ -6,11 +6,14 @@ angular.module('vierGewinntApp')
     var gameBoard = [];
     var currentUser = 1;
     var gameRunning = false;
+    var winSound;
+    var insertSound;
 
     var init = function () {
       currentUser = 1;
       gameRunning = true;
-      
+      winSound = new Audio("/sounds/fail1.m4a");
+      insertSound = new Audio("/sounds/coin.m4a");
       for(var i = 0; i < boardSize; i++) {
         gameBoard[i] = new Array(boardSize);
         for(var j = 0; j < boardSize; j++) {
@@ -23,6 +26,7 @@ angular.module('vierGewinntApp')
       // check if colNumber < boardSize => isValid
       for(var rowNumber = 7; rowNumber >= 0; rowNumber--) {
         if(gameBoard[colNumber][rowNumber] === 0) {
+        	insertSound.play();
           gameBoard[colNumber][rowNumber] = currentUser;
           connectFour(colNumber, rowNumber);
           break;
@@ -170,6 +174,7 @@ angular.module('vierGewinntApp')
     var finishGame = function() {
       // show winner, winner, chicken dinner message
       gameRunning = false;
+      winSound.play();
       console.log('Player ' + currentUser + ' wins!');
     };
 
