@@ -113,6 +113,7 @@ angular.module('vierGewinntApp')
       var downCol = colNumber;
       var downRow = rowNumber;
 
+      // diagonal up lef
       while(upCol > 0 && upRow > 0) {
         upCol--;
         upRow--;
@@ -124,6 +125,7 @@ angular.module('vierGewinntApp')
         }
       }
 
+      // diagonal down right
       while(downCol < boardSize-1 && downRow < boardSize-1) {
         downCol++;
         downRow++;
@@ -145,6 +147,7 @@ angular.module('vierGewinntApp')
       var downCol = colNumber;
       var downRow = rowNumber;
 
+      // diagonal up right
       while(upCol < boardSize-1 && upRow > 0) {
         upCol++;
         upRow--;
@@ -156,6 +159,7 @@ angular.module('vierGewinntApp')
         }
       }
 
+      // diagonal down left
       while(downCol > 0 && downRow < boardSize-1) {
         downCol--;
         downRow++;
@@ -213,22 +217,44 @@ angular.module('vierGewinntApp')
     initGame();
 
     return {
-      initGame: function () {
-        initGame();
-        return gameBoard;
-      },
+      /**
+      * Insert a coin into gameBoard
+      * @param colNumber
+      */
       insertCoin: function (colNumber) {
         insertCoin(colNumber);
       },
+      /**
+      * Starts a new game
+      */
+      initGame: function () {
+        initGame();
+      },
+      /**
+      * Get game running state
+      * @returns boolean
+      */
       getGameRunning: function () {
         return gameRunning;
       },
+      /**
+      * Get game board
+      * @returns {array}
+      */
       getGameBoard: function () {
         return gameBoard;
       },
+      /**
+      * Get current user
+      * @returns integer
+      */
       getCurrentUser: function () {
         return currentUser;
       },
+      /**
+      * Get overlay text
+      * @returns string
+      */
       getOverlayText: function() {
         return overlayText;
       }

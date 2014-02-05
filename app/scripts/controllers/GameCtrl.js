@@ -2,7 +2,6 @@
 
 angular.module('vierGewinntApp')
   .controller('gameCtrl', function ($scope, gameService) {
-    $scope.initGame = gameService.initGame();
     $scope.gameBoard = gameService.getGameBoard();
     $scope.currentUser = gameService.getCurrentUser();
     $scope.overlayText = gameService.getOverlayText();
@@ -21,7 +20,8 @@ angular.module('vierGewinntApp')
     };
 
     $scope.initGame = function () {
-      $scope.gameBoard = gameService.initGame();
+      gameService.initGame();
+      $scope.gameBoard = gameService.getGameBoard();
       $scope.isFinished = false;
       $scope.currentUser = gameService.getCurrentUser();
     };
