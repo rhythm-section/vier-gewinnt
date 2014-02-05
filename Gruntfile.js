@@ -404,11 +404,11 @@ module.exports = function (grunt) {
     'build'
   ]);
 
-  grunt.registerTask('heroku:development', [
+  grunt.registerTask('heroku:development', function () {
     grunt.task.run(['serve']);
-  ]);
+  });
 
-  grunt.registerTask('heroku:production', [
+  grunt.registerTask('heroku:production', function () {
     grunt.task.run(['build']);
-  ]);
+  });
 };
