@@ -21,5 +21,6 @@ angular.module('vierGewinntApp')
     $scope.initGame = function () {
       $scope.gameBoard = gameService.initGame();
       $scope.isFinished = false;
+      $scope.currentUser = gameService.getCurrentUser();
     };
   });
