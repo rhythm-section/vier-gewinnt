@@ -11,19 +11,29 @@
   @include box-sizing(border-box);
 }
 
+html,
+body,
+#wrapper {
+  height: 100%;
+}
+
 html {
-  font-size: 100%;
+  font-size: 10px;
 }
 
 body {
+  color: $white;
   font-family: 'Lato', sans-serif;
+  @include rem(font-size, 1.6);
   line-height: 1.5;
 }
 
 #wrapper {
+  border-left: 1px solid $blue-dark;
+  border-right: 1px solid $blue-dark;
   margin: 0 auto;
   position: relative;
-  width: 800px;
+  width: 642px;
 }
 
 p {
@@ -38,27 +48,50 @@ p {
 
 button {
   @include appearance(none);
-  background-color: green;
-  border: 1px solid green;
-  color: #fff;
-}
+  background-color: $blue-light;
+  border: none;
+  color: $blue-dark;
+  @include rem(font-size, 2.4);
+  @include rem(height, 4.8);
+  margin: 0;
+  padding: 0;
+  width: 100%;
 
-#player {
-  overflow: auto;
-
-  li {
-    background-color: $blue-light;
-    color: $blue-dark;
-    @include rem(font-size, 2);
-    float: left;
-    text-align: center;
-    width: 50%;
-  }
-
-  &.user-1 li:first-child,
-  &.user-2 li:last-child {
+  &:hover {
     background-color: $blue-dark;
     color: $blue-light;
+    cursor: pointer;
+  }
+}
+
+nav ul {
+  overflow: auto;
+  width: 100%;
+
+  li {
+    background-color: $blue-dark;
+    color: $blue-light;
+    @include rem(font-size, 2.4);
+    line-height: 1;
+    float: left;
+    @include rem(padding, 1.2, 0);
+    text-align: center;
+    width: 37.5%;
+
+    &:first-child {
+      padding: 0;
+      width: 25%;
+    }
+  }
+
+  &.user-1 li:nth-child(2) {
+    background-color: $red-light;
+    color: $red-dark;
+  }
+
+  &.user-2 li:last-child {
+    background-color: $yellow-light;
+    color: $yellow-dark;
   }
 }
 
@@ -67,13 +100,13 @@ button {
 
   &> li {
     background-color: $blue-light;
-    border-right: 1px solid $blue-dark;
+    border-left: 1px solid $blue-dark;
     cursor: pointer;
     float: left;
     width: 12.5%;
 
     &:first-child {
-      border-left: 1px solid $blue-dark;
+      border-left: none;
     }
 
     &:hover {
@@ -90,10 +123,10 @@ button {
 
     ul li {
       border-bottom: 1px solid $blue-dark;
-      height: 100px;
+      @include rem(height, 8);
 
       &:first-child {
-        border-top: 1px solid $blue-dark;
+        border-top: 2px solid $blue-dark;
       }
 
       // &.user-0 {
@@ -112,11 +145,24 @@ button {
 }
 
 #overlay {
-  background-color: rgba(255,255,255,0.6);
-  position: fixed;
-    bottom: 0;
+  background-color: $blue-dark-transparent;
+  height: 100%;
+  position: absolute;
     left: 0;
-    right: 0;
     top: 0;
+  text-align: center;
+  width: 100%;
   z-index: 2;
+
+  .inner {
+    @include rem(margin-top, -6);
+    position: relative;
+      top: 50%;
+  }
+
+  button {
+    @include rem(padding, 1.2, 2.4);
+    @include rem(margin-top, 2.4);
+    width: auto;
+  }
 }
