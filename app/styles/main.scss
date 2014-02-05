@@ -1,87 +1,78 @@
-.browsehappy {
-    margin: 0.2em 0;
-    background: #ccc;
-    color: #000;
-    padding: 0.2em 0;
+@import "reset.scss";
+@import "compass/css3";
+
+*,
+*:before,
+*:after {
+  @include box-sizing(border-box);
 }
 
-/* Space out content a bit */
+html {
+  font-size: 100%;
+}
+
 body {
-    padding-top: 20px;
-    padding-bottom: 20px;
+  line-height: 1.5;
 }
 
-/* Everything but the jumbotron gets side spacing for mobile first views */
-.header,
-.marketing,
-.footer {
-    padding-left: 15px;
-    padding-right: 15px;
+#wrapper {
+  margin: 0 auto;
+  position: relative;
+  width: 800px;
 }
 
-/* Custom page header */
-.header {
-    border-bottom: 1px solid #e5e5e5;
+p {
+  &.user-1 {
+    color: red;
+  }
+
+  &.user-2 {
+    color: yellow;
+  }
 }
 
-/* Make the masthead heading the same height as the navigation */
-.header h3 {
-    margin-top: 0;
-    margin-bottom: 0;
-    line-height: 40px;
-    padding-bottom: 19px;
+button {
+  @include appearance(none);
+  background-color: green;
+  border: 1px solid green;
+  color: #fff;
 }
 
-/* Custom page footer */
-.footer {
-    padding-top: 19px;
-    color: #777;
-    border-top: 1px solid #e5e5e5;
-}
+#game-board {
+  &> li {
+    cursor: pointer;
+    float: left;
 
-.container-narrow > hr {
-    margin: 30px 0;
-}
-
-/* Main marketing message and sign up button */
-.jumbotron {
-    text-align: center;
-    border-bottom: 1px solid #e5e5e5;
-}
-
-.jumbotron .btn {
-    font-size: 21px;
-    padding: 14px 24px;
-}
-
-/* Supporting marketing content */
-.marketing {
-    margin: 40px 0;
-}
-
-.marketing p + h4 {
-    margin-top: 28px;
-}
-
-/* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
-    .container {
-        max-width: 730px;
+    &:hover {
+      background-color: #ddd;
     }
 
-    /* Remove the padding we set earlier */
-    .header,
-    .marketing,
-    .footer {
-        padding-left: 0;
-        padding-right: 0;
+    ul li {
+      border: 1px solid #eee;
+      height: 100px;
+      width: 100px;
+
+      // &.user-0 {
+      //   background-color: #fff;
+      // }
+
+      &.user-1 {
+        background-color: red;
+      }
+
+      &.user-2 {
+        background-color: yellow;
+      }
     }
-    /* Space out the masthead */
-    .header {
-        margin-bottom: 30px;
-    }
-    /* Remove the bottom border on the jumbotron for visual effect */
-    .jumbotron {
-        border-bottom: 0;
-    }
+  }
+}
+
+#overlay {
+  background-color: rgba(255,255,255,0.6);
+  position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+  z-index: 2;
 }

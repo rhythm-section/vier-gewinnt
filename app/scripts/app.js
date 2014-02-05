@@ -9,8 +9,8 @@ angular.module('vierGewinntApp', [
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'views/game.html',
+        controller: 'gameCtrl'
       })
       .otherwise({
         redirectTo: '/'

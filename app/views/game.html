@@ -1,0 +1,20 @@
+<div id="wrapper">
+  <div id="overlay" ng-show="isFinished">
+    <p>Winner, winner, chicken dinner!</p>
+    <p>Player {{currentUser}}</p>
+    <button ng-click="initGame()">Neues Spiel</button>
+  </div>
+
+  <div>
+    <p class="user-{{currentUser}}">Player {{currentUser}}</p>
+    <button ng-click="initGame()">Neues Spiel</button>
+  </div>
+
+  <ul id="game-board">
+    <li ng-repeat="col in gameBoard track by $index" ng-click="insertCoin($index)">
+      <ul>
+        <li ng-repeat="row in col track by $index" class="user-{{row}}"></li>
+      </ul>
+    </li>
+  </ul>
+</div>
