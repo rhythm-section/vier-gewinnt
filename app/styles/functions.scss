@@ -1,0 +1,6 @@
+// helper function for px-fallback
+// http://designbyjoel.com/blog/2013-02-28-sass-rems/
+
+@function strip-unit($num) {
+  @return $num / ($num * 0 + 1);
+}
