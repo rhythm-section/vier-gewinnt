@@ -38,37 +38,30 @@ body {
 
 button {
   @include appearance(none);
-  background-color: $blue-light;
+  background-color: $blue-dark;
   border: none;
-  color: $blue-dark;
+  color: $white;
   @include rem(font-size, 1.6);
   line-height: 1;
   @include rem(height, 4.8);
   margin: 0;
   padding: 0;
   width: 100%;
-
-  &:hover {
-    background-color: $blue-dark;
-    color: $blue-light;
-    cursor: pointer;
-  }
 }
 
 nav {
-  @include rem(margin, 2.4, 0, 4.8);
+  border-bottom: 2px solid $blue-dark;
 }
 
 nav ul {
   overflow: auto;
 
   li {
-    background-color: $blue-dark;
+    background-color: $blue-light;
     border-bottom: 1px solid $blue-dark;
     border-right: 1px solid $blue-dark;
-    border-top: 1px solid $blue-dark;
     @include box-sizing(border-box);
-    color: $blue-light;
+    color: $blue-dark;
     float: left;
     @include rem(padding, 1.2, 0);
     text-align: center;
@@ -100,18 +93,6 @@ nav ul {
     cursor: pointer;
     float: left;
     @include rem(width, 4);
-
-    &:hover {
-      background-color: $blue-dark-transparent;
-
-      li.user-1 {
-        background-color: $red-dark;
-      }
-
-      li.user-2 {
-        background-color: $yellow-dark;
-      }
-    }
 
     ul li {
       border-bottom: 1px solid $blue-dark;
@@ -157,7 +138,8 @@ nav ul {
   }
 
   button {
-    border: 1px solid $blue-dark;
+    border: 1px solid $blue-light;
+    color: $white;
     @include rem(padding, 1.2, 2.4);
     @include rem(margin-top, 2.4);
     line-height: 1;
@@ -188,6 +170,19 @@ nav ul {
 }
 
 @media screen and (min-width: 640px) {
+  button,
+  #overlay button {
+    &:hover {
+      color: $blue-light;
+      cursor: pointer;
+    }
+
+    &:active {
+      background-color: $blue-light;
+      color: $blue-dark;
+    }
+  }
+
   #wrapper {
     width: 640px;
   }
@@ -209,30 +204,16 @@ nav ul {
   }
 }
 
-/*
-@media screen and (min-width: 768px) {
-  #wrapper {
-    width: 768px;
-  }
+@media screen and (min-width: 769px) {
+  #game-board > li:hover {
+    background-color: $blue-dark-transparent;
 
-  nav ul li {
-    @include rem(width, 28.8);
-
-    &:first-child {
-      @include rem(width, 19.2);
+    li.user-1 {
+      background-color: $red-dark;
     }
-  }
 
-  #game-board > li {
-    @include rem(width, 9.6);
-
-    ul li {
-      @include rem(height, 9.6);
+    li.user-2 {
+      background-color: $yellow-dark;
     }
   }
 }
-
-@media screen and (min-width: 1024px) {
-
-}
-*/
