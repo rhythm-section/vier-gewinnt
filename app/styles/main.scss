@@ -4,12 +4,13 @@
 @import "functions.scss";
 @import "mixins.scss";
 
-
+/*
 *,
 *:before,
 *:after {
   @include box-sizing(border-box);
 }
+*/
 
 html,
 body,
@@ -22,6 +23,7 @@ html {
 }
 
 body {
+  background-color: $blue-light;
   color: $white;
   font-family: 'Lato', sans-serif;
   @include rem(font-size, 1.6);
@@ -29,21 +31,9 @@ body {
 }
 
 #wrapper {
-  border-left: 1px solid $blue-dark;
-  border-right: 1px solid $blue-dark;
   margin: 0 auto;
   position: relative;
-  width: 642px;
-}
-
-p {
-  &.user-1 {
-    color: red;
-  }
-
-  &.user-2 {
-    color: yellow;
-  }
+  width: 320px;
 }
 
 button {
@@ -51,7 +41,8 @@ button {
   background-color: $blue-light;
   border: none;
   color: $blue-dark;
-  @include rem(font-size, 2.4);
+  @include rem(font-size, 1.6);
+  line-height: 1;
   @include rem(height, 4.8);
   margin: 0;
   padding: 0;
@@ -64,23 +55,29 @@ button {
   }
 }
 
+nav {
+  @include rem(margin, 2.4, 0, 4.8);
+}
+
 nav ul {
   overflow: auto;
-  width: 100%;
 
   li {
     background-color: $blue-dark;
+    border-bottom: 1px solid $blue-dark;
+    border-right: 1px solid $blue-dark;
+    border-top: 1px solid $blue-dark;
+    @include box-sizing(border-box);
     color: $blue-light;
-    @include rem(font-size, 2.4);
-    line-height: 1;
     float: left;
     @include rem(padding, 1.2, 0);
     text-align: center;
-    width: 37.5%;
+    @include rem(width, 12);
 
     &:first-child {
+      border-left: 1px solid $blue-dark;
       padding: 0;
-      width: 25%;
+      @include rem(width, 8);
     }
   }
 
@@ -100,14 +97,9 @@ nav ul {
 
   &> li {
     background-color: $blue-light;
-    border-left: 1px solid $blue-dark;
     cursor: pointer;
     float: left;
-    width: 12.5%;
-
-    &:first-child {
-      border-left: none;
-    }
+    @include rem(width, 4);
 
     &:hover {
       background-color: $blue-dark-transparent;
@@ -123,15 +115,13 @@ nav ul {
 
     ul li {
       border-bottom: 1px solid $blue-dark;
-      @include rem(height, 8);
+      border-right: 1px solid $blue-dark;
+      @include box-sizing(border-box);
+      @include rem(height, 4);
 
       &:first-child {
-        border-top: 2px solid $blue-dark;
+        border-top: 1px solid $blue-dark;
       }
-
-      // &.user-0 {
-      //   background-color: #fff;
-      // }
 
       &.user-1 {
         background-color: $red-light;
@@ -141,14 +131,20 @@ nav ul {
         background-color: $yellow-light;
       }
     }
+
+    &:first-child ul li {
+      border-left: 1px solid $blue-dark;
+    }
   }
 }
 
 #overlay {
   background-color: $blue-dark-transparent;
   height: 100%;
-  position: absolute;
+  position: fixed;
+    bottom: 0;
     left: 0;
+    right: 0;
     top: 0;
   text-align: center;
   width: 100%;
@@ -161,8 +157,82 @@ nav ul {
   }
 
   button {
+    border: 1px solid $blue-dark;
     @include rem(padding, 1.2, 2.4);
     @include rem(margin-top, 2.4);
+    line-height: 1;
     width: auto;
   }
 }
+
+@media screen and (min-width: 480px) {
+  #wrapper {
+    width: 480px;
+  }
+
+  nav ul li {
+    @include rem(width, 18);
+
+    &:first-child {
+      @include rem(width, 12);
+    }
+  }
+
+  #game-board > li {
+    @include rem(width, 6);
+
+    ul li {
+      @include rem(height, 6);
+    }
+  }
+}
+
+@media screen and (min-width: 640px) {
+  #wrapper {
+    width: 640px;
+  }
+
+  nav ul li {
+    @include rem(width, 24);
+
+    &:first-child {
+      @include rem(width, 16);
+    }
+  }
+
+  #game-board > li {
+    @include rem(width, 8);
+
+    ul li {
+      @include rem(height, 8);
+    }
+  }
+}
+
+/*
+@media screen and (min-width: 768px) {
+  #wrapper {
+    width: 768px;
+  }
+
+  nav ul li {
+    @include rem(width, 28.8);
+
+    &:first-child {
+      @include rem(width, 19.2);
+    }
+  }
+
+  #game-board > li {
+    @include rem(width, 9.6);
+
+    ul li {
+      @include rem(height, 9.6);
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+
+}
+*/
