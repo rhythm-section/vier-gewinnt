@@ -4,8 +4,6 @@
 @import "functions.scss";
 @import "mixins.scss";
 
-$blue-light: #2b79ce;
-$blue-dark: #1b4f98;
 
 *,
 *:before,
@@ -29,8 +27,6 @@ body {
 }
 
 p {
-  font-weight: bold;
-
   &.user-1 {
     color: red;
   }
@@ -47,8 +43,26 @@ button {
   color: #fff;
 }
 
+#player {
+  overflow: auto;
+
+  li {
+    background-color: $blue-light;
+    color: $blue-dark;
+    @include rem(font-size, 2);
+    float: left;
+    text-align: center;
+    width: 50%;
+  }
+
+  &.user-1 li:first-child,
+  &.user-2 li:last-child {
+    background-color: $blue-dark;
+    color: $blue-light;
+  }
+}
+
 #game-board {
-  @include rem(margin, 2, 0);
   overflow: auto;
 
   &> li {
@@ -63,7 +77,15 @@ button {
     }
 
     &:hover {
-      background-color: $blue-dark;
+      background-color: $blue-dark-transparent;
+
+      li.user-1 {
+        background-color: $red-dark;
+      }
+
+      li.user-2 {
+        background-color: $yellow-dark;
+      }
     }
 
     ul li {
@@ -79,11 +101,11 @@ button {
       // }
 
       &.user-1 {
-        background-color: red;
+        background-color: $red-light;
       }
 
       &.user-2 {
-        background-color: yellow;
+        background-color: $yellow-light;
       }
     }
   }
