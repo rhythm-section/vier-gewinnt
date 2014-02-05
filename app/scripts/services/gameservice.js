@@ -12,7 +12,7 @@ angular.module('vierGewinntApp')
     var init = function () {
       currentUser = 1;
       gameRunning = true;
-      winSound = new Audio('/sounds/fail1.m4a');
+      winSound = new Audio('/sounds/yay.mp3');
       winSound.volume = 0.3;
       insertSound = new Audio('/sounds/Tap.wav');
       for(var i = 0; i < boardSize; i++) {
