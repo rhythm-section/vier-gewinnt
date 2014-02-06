@@ -15,8 +15,8 @@ Local-Version
 
 If you want to serve this application on your computer, just execute the following steps:
 
-1) git clone https://github.com/rhythm-section/vier-gewinnt.git
-2) cd vier-gewinnt/
-3) npm install
-4) bower install
-5) grunt serve or grunt build
+1. `git clone https://github.com/rhythm-section/vier-gewinnt.git`
+2. `cd vier-gewinnt/`
+3. `npm install`
+4. `bower install`
+5. `grunt serve or grunt build`
