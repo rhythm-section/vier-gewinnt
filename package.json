@@ -1,6 +1,11 @@
 {
-  "name": "viergewinnt",
-  "version": "0.0.0",
+  "name": "piano-4-the-draw",
+  "version": "1.0.0",
+  "description": "piano-4-the-draw is a connect four application which currently works locally for two players on the same computer",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rhythm-section/vier-gewinnt.git"
+  },
   "dependencies": {
     "grunt": "~0.4.1",
     "grunt-autoprefixer": "~0.4.0",

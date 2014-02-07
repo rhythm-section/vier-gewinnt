@@ -8,23 +8,12 @@ angular.module('vierGewinntApp')
     var gameBoard = [];                                 /* Setting the gameBoard Array which states the field states */
     var currentUser = 0;                                /* Setting the currentUser variable */
     var gameRunning = false;                            /* Setting the gameRunning variable */
+    var overlayText = '';                               /* Setting the overlayText variable which shows the winner or draw message */
     
-    /* Initial Sound settings */
-    var winSound = new Audio('/sounds/winsound.mp3');   /* Initialize the winSound-Variable ... */
-    winSound.volume = 1;                                /* ... and volume */
+    /* Initial Sound variables */
+    var winSound;
+    var drawSound;
     var colSounds = [];
-    var drawSound = new Audio('/sounds/yay.mp3');
-
-    colSounds[0] = new Audio('/sounds/col1.mp3');
-    colSounds[1] = new Audio('/sounds/col2.mp3');
-    colSounds[2] = new Audio('/sounds/col3.mp3');
-    colSounds[3] = new Audio('/sounds/col4.mp3');
-    colSounds[4] = new Audio('/sounds/col5.mp3');
-    colSounds[5] = new Audio('/sounds/col6.mp3');
-    colSounds[6] = new Audio('/sounds/col7.mp3');
-    colSounds[7] = new Audio('/sounds/col8.mp3');
-
-    var overlayText = '';
 
     /* The init-Function sets all variables for starting the game */
     var initGame = function () {
@@ -38,6 +27,21 @@ angular.module('vierGewinntApp')
         for(var j = 0; j < boardSize; j++) {
           gameBoard[i][j] = 0;
         }
+      }
+    };
+
+    /* The initSound-Function is responsible for creating the audio elements in the DOM */
+    var initSound = function () {
+      winSound = new Audio('/sounds/winsound.mp3');             /* Initialize the winSound-Variable ... */
+      document.body.appendChild(winSound);                      /* ... and append it to the DOM */
+
+      drawSound = new Audio('/sounds/yay.mp3');                 /* Initialize the drawSound-Variable ... */
+      document.body.appendChild(drawSound);                     /* ... and append it to the DOM */
+
+      /* and the same for all eight piano sounds */
+      for(var i = 0; i < 8; i++) {
+        colSounds[i] = new Audio('/sounds/col' + i + '.mp3');
+        document.body.appendChild(colSounds[i]);
       }
     };
 
@@ -186,7 +190,6 @@ angular.module('vierGewinntApp')
         finishGame('draw');
       } else {
         colSounds[colNumber].cloneNode().play();
-        console.log(colSounds[colNumber]);
         changeUser();
       }
 
@@ -216,6 +219,7 @@ angular.module('vierGewinntApp')
     };
 
     initGame();
+    initSound();
 
     return {
       /**
