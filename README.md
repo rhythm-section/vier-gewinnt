@@ -13,7 +13,8 @@ Features
 * ... locally because of missing server (as mentioned in the mail from February 3th)
 * works with the following browsers: IE (>= 9 without compatibility mode), chrome, safari, firefox
 * can be played via touch devices (smartphone, tablets)
-* HTML5 (Audio Element), CSS3
+* HTML5 (Audio Element <-- experimental when using smartphones or tablets)
+* CSS3
 * works with SASS as pre-processor for CSS
 * with included grunt tasks for serve and build (css minifiy, javscript minify and merge, ...)
 
